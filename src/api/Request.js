@@ -30,15 +30,17 @@ export const updateToApproveDisapprove = async ({
   employeeID,
   status,
   pendingRequest,
+  disapproveReason,
 }) => {
+  console.log("disapproveReason : ", disapproveReason);
   const res = await Axios.put(
     `http://localhost:3001/api/request/status/update/${pendingRequest.requestID}`,
     {
       employeeID: employeeID,
       status: status,
       barangayID_no: pendingRequest.barangayID_no,
+      disapproveReason: disapproveReason,
     }
   );
-  console.log("update req log result : ", res);
   return res;
 };

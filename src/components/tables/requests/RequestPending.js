@@ -41,13 +41,18 @@ const RequestPendingTable = (props) => {
     let disapprove = window.confirm("Do yu want to Disapprove this request?");
     if (disapprove) {
       const status = "disapprove";
-      try {
-        await mutation.mutateAsync({
-          employeeID: props.userAccount.employeeID,
-          status,
-          pendingRequest,
-        });
-      } catch (e) {}
+      let disapproveReason = window.prompt("Reason for Disapprove..");
+      if (disapproveReason) {
+        console.log("request page disapproveReason", disapproveReason);
+        try {
+          await mutation.mutateAsync({
+            employeeID: props.userAccount.employeeID,
+            status,
+            pendingRequest,
+            disapproveReason,
+          });
+        } catch (e) {}
+      }
     }
   };
 
